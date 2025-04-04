@@ -1,9 +1,30 @@
 import { useState } from "react";
-import { FaBook, FaFileAlt, FaQuestionCircle, FaSignOutAlt, FaUpload, FaCamera, FaPlus, FaLightbulb, FaFeather, FaUserCircle, FaBell, FaEdit, FaBackward, FaTimes } from "react-icons/fa";
+import {
+  FaBook,
+  FaFileAlt,
+  FaQuestionCircle,
+  FaSignOutAlt,
+  FaUpload,
+  FaCamera,
+  FaPlus,
+  FaLightbulb,
+  FaFeather,
+  FaUserCircle,
+  FaBell,
+  FaEdit,
+  FaBackward,
+  FaTimes,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const CreateNewQuestion = () => {
   const [showGuide, setShowGuide] = useState(false); // State for modal
+  const [selectedFile, setSelectedFile] = useState(null); // State for selected file
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file ? file.name : null);
+  };
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -19,22 +40,34 @@ const CreateNewQuestion = () => {
         <nav className="flex-1">
           <ul>
             <li className="mb-2">
-              <Link to="/home" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
+              <Link
+                to="/home"
+                className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg"
+              >
                 <FaBook className="mr-2" /> Dashboard
               </Link>
             </li>
             <li className="mb-2">
-              <Link to="/questionbank" className="flex items-center px-4 py-3 bg-indigo-500 text-white rounded-lg">
+              <Link
+                to="/questionbank"
+                className="flex items-center px-4 py-3 bg-indigo-500 text-white rounded-lg"
+              >
                 <FaBook className="mr-2" /> Question Bank
               </Link>
             </li>
             <li className="mb-2">
-              <Link to="/previouspapers" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
+              <Link
+                to="/previouspapers"
+                className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg"
+              >
                 <FaFileAlt className="mr-2" /> Previous Papers
               </Link>
             </li>
             <li className="mb-2">
-              <Link to="/help" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
+              <Link
+                to="/help"
+                className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg"
+              >
                 <FaQuestionCircle className="mr-2" /> Help
               </Link>
             </li>
@@ -44,14 +77,19 @@ const CreateNewQuestion = () => {
         {/* Profile & Logout */}
         <div className="mt-auto">
           <div className="flex items-center mb-3">
-            <div className="bg-yellow-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold">VD</div>
+            <div className="bg-yellow-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold">
+              VD
+            </div>
             <span className="ml-3 text-gray-800">Vishal Desai</span>
           </div>
           <div className="flex items-center justify-between">
             <button className="flex items-center text-gray-600 hover:text-indigo-600">
               <FaBell className="mr-2" /> Notifications
             </button>
-            <Link to="/" className="flex items-center text-gray-600 hover:text-red-600">
+            <Link
+              to="/"
+              className="flex items-center text-gray-600 hover:text-red-600"
+            >
               <FaSignOutAlt className="mr-2" /> Logout
             </Link>
           </div>
@@ -66,26 +104,55 @@ const CreateNewQuestion = () => {
         <div className="bg-white p-6 shadow rounded-md flex justify-between">
           {/* Upload Document */}
           <div className="text-center p-4 border rounded-lg shadow hover:shadow-md transition">
-            <FaUpload className="text-blue-500 text-3xl mb-2 mx-auto" />
-            <h3 className="font-semibold">Upload Document</h3>
-            <p className="text-sm text-gray-600">Upload Excel, PDF files containing questions</p>
-            <button className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg">Select File</button>
-          </div>
+      <FaUpload className="text-blue-500 text-3xl mb-2 mx-auto" />
+      <h3 className="font-semibold">Upload Document</h3>
+      <p className="text-sm text-gray-600">Upload Excel, PDF files containing questions</p>
+
+      {/* Hidden File Input */}
+      <input
+        type="file"
+        accept=".pdf,.xlsx"
+        className="hidden"
+        id="fileInput"
+        onChange={handleFileChange}
+      />
+
+      {/* File Upload Button */}
+      <label
+        htmlFor="fileInput"
+        className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer inline-block"
+      >
+        Select File
+      </label>
+
+      {/* Show Selected File Name */}
+      {selectedFile && (
+        <p className="text-sm text-gray-700 mt-2">Selected: {selectedFile}</p>
+      )}
+    </div>
 
           {/* Scan Document */}
           <div className="text-center p-4 border rounded-lg shadow hover:shadow-md transition">
             <FaCamera className="text-green-500 text-3xl mb-2 mx-auto" />
             <h3 className="font-semibold">Scan Document</h3>
-            <p className="text-sm text-gray-600">Scan physical documents with camera</p>
-            <button className="mt-3 bg-green-500 text-white px-4 py-2 rounded-lg">Open Camera</button>
+            <p className="text-sm text-gray-600">
+              Scan physical documents with camera
+            </p>
+            <button className="mt-3 bg-green-500 text-white px-4 py-2 rounded-lg">
+              Open Camera
+            </button>
           </div>
 
           {/* Manual Entry */}
           <div className="text-center p-4 border rounded-lg shadow hover:shadow-md transition">
             <FaPlus className="text-purple-500 text-3xl mb-2 mx-auto" />
             <h3 className="font-semibold">Manual Entry</h3>
-            <p className="text-sm text-gray-600">Manually create and enter questions</p>
-            <button className="mt-3 bg-purple-500 text-white px-4 py-2 rounded-lg">Create New</button>
+            <p className="text-sm text-gray-600">
+              Manually create and enter questions
+            </p>
+            <button className="mt-3 bg-purple-500 text-white px-4 py-2 rounded-lg">
+              Create New
+            </button>
           </div>
         </div>
 
@@ -96,10 +163,11 @@ const CreateNewQuestion = () => {
             <div>
               <p className="font-semibold">Pro Tip</p>
               <p className="text-sm text-gray-600">
-                For best results when scanning physical documents, ensure good lighting and hold the camera steady.
-                Multiple questions per page are automatically separated.
+                For best results when scanning physical documents, ensure good
+                lighting and hold the camera steady. Multiple questions per page
+                are automatically separated.
               </p>
-              <button 
+              <button
                 className="mt-2 text-blue-600 underline"
                 onClick={() => setShowGuide(true)}
               >
@@ -120,20 +188,44 @@ const CreateNewQuestion = () => {
                 </button>
               </div>
               <ul className="list-disc list-inside text-gray-700 text-sm space-y-2">
-                <li><strong>Ensure Good Lighting:</strong> Avoid shadows and glare.</li>
-                <li><strong>Hold the Camera Steady:</strong> Keep hands stable or use a stand.</li>
-                <li><strong>Use a Flat Surface:</strong> Place documents on a flat surface.</li>
-                <li><strong>Check Alignment:</strong> Ensure the entire document is visible.</li>
-                <li><strong>Use High Resolution:</strong> Scan at least 300 DPI for clarity.</li>
-                <li><strong>Separate Questions Clearly:</strong> Space out multiple questions on a page.</li>
-                <li><strong>Review Before Saving:</strong> Check for clarity before uploading.</li>
+                <li>
+                  <strong>Ensure Good Lighting:</strong> Avoid shadows and
+                  glare.
+                </li>
+                <li>
+                  <strong>Hold the Camera Steady:</strong> Keep hands stable or
+                  use a stand.
+                </li>
+                <li>
+                  <strong>Use a Flat Surface:</strong> Place documents on a flat
+                  surface.
+                </li>
+                <li>
+                  <strong>Check Alignment:</strong> Ensure the entire document
+                  is visible.
+                </li>
+                <li>
+                  <strong>Use High Resolution:</strong> Scan at least 300 DPI
+                  for clarity.
+                </li>
+                <li>
+                  <strong>Separate Questions Clearly:</strong> Space out
+                  multiple questions on a page.
+                </li>
+                <li>
+                  <strong>Review Before Saving:</strong> Check for clarity
+                  before uploading.
+                </li>
               </ul>
             </div>
           </div>
         )}
 
         {/* Back to Question Banks */}
-        <Link to="/questionbank" className="mt-6 block bg-white p-4 shadow rounded-md hover:bg-gray-50 flex items-center">
+        <Link
+          to="/questionbank"
+          className="mt-6 block bg-white p-4 shadow rounded-md hover:bg-gray-50 flex items-center"
+        >
           <FaBackward className="mr-2 text-lg text-gray-700" />
           <h2 className="font-semibold text-lg">Back to Question Banks</h2>
         </Link>
