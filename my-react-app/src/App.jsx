@@ -4,6 +4,7 @@ import Login from "./components/Login.jsx";
 import QuestionBank from "./components/QuestionBank.jsx";
 import PrevPapers from "./components/PrevPapers.jsx";
 import Help from "./components/Help.jsx";
+import CreateNewQuestion from "./components/CreateNewQuestion.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/questionbank" element={<QuestionBank />} />
         <Route path="/previouspapers" element={<PrevPapers />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/createnewquestion" element={<CreateNewQuestion/>} />
       </Routes>
     </Router>
   );

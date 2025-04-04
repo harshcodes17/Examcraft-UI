@@ -67,13 +67,12 @@ const QuestionBank = () => {
         <h2 className="text-2xl font-semibold">Question Bank</h2>
         <div className="mt-4 bg-white p-6 rounded-lg shadow">
           <div className="flex justify-between mb-4">
-          <button className="flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg shadow">
+            <button className="flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg shadow">
               <FaPlus className="mr-2" /> Create new Question Bank
             </button>
-            <button className="flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-lg shadow">
+            <Link to="/createnewquestion" className="flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-lg shadow">
               <FaPlus className="mr-2" /> Create new Question
-            </button>
-            
+            </Link>
           </div>
 
           <table className="w-full border-collapse border border-gray-200">
