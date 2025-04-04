@@ -1,6 +1,8 @@
 import { FaBook, FaFileAlt, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { FaFeather } from "react-icons/fa";
 
 const Home = () => {
   return (
@@ -8,31 +10,34 @@ const Home = () => {
       {/* Sidebar */}
       <aside className="w-64 bg-white shadow-lg p-5 flex flex-col">
         <h1 className="text-indigo-600 text-xl font-bold flex items-center mb-6">
-          📖 ExamCraft
+          <FaFeather className="text-indigo-600 text-xl mr-2" />
+          ExamCraft
         </h1>
         <div className="text-gray-800 font-semibold mb-4">Welcome, Vishal Desai</div>
         <nav className="flex-1">
           <ul>
             <li className="mb-2">
-              <a href="#" className="flex items-center px-4 py-3 bg-indigo-500 text-white rounded-lg">
-                <MdDashboard className="mr-2" /> Dashboard
-              </a>
+            <Link to= "/home" className="flex items-center px-4 py-3 bg-indigo-500 text-white rounded-lg">
+                
+                <FaBook className="mr-2" /> Dashboard
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
-                <FaBook className="mr-2" /> Question Bank
-              </a>
+              <Link to= "/questionbank" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
+                
+                <FaBook className="mr-2" /> Question Bank 
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
-                <FaFileAlt className="mr-2" /> Previous Papers
-              </a>
+            <Link to= "/previouspapers" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
+            <FaFileAlt className="mr-2" /> Previous Papers
+            </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
+            <Link to= "/help" className="flex items-center px-4 py-3 hover:bg-gray-200 rounded-lg">
                 <FaQuestionCircle className="mr-2" /> Help
-              </a>
-            </li>
+                </Link>
+                </li>
           </ul>
         </nav>
         {/* Profile & Logout */}
@@ -47,9 +52,9 @@ const Home = () => {
             <button className="flex items-center text-gray-600 hover:text-indigo-600">
               <IoMdNotifications className="mr-2" /> Notifications
             </button>
-            <button className="flex items-center text-gray-600 hover:text-red-600">
+            <Link to="/" className="flex items-center text-gray-600 hover:text-red-600">
               <FaSignOutAlt className="mr-2" /> Logout
-            </button>
+            </Link>
           </div>
         </div>
       </aside>
